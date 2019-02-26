@@ -272,3 +272,27 @@ bd_shp %>%
         legend.text = element_text(face = "bold", size = 18, family = "Didact Gothic Regular")) +
   ggsave(filename = "mapa_porcentaje_si_por_mpo.png", path = "03_graficas/", width = 12.7, height = 11.67, dpi = 200)
 
+
+### Mapa: porcentaje de participación municipal en la consulta -----
+bd_shp %>% 
+  ggplot() +
+  geom_sf(data = edos_shp, color = "grey40", fill = "grey93", size = 0.5) +
+  geom_sf(aes(fill = por_part), color = "grey70") +
+  geom_sf(data = edos_shp, color = "grey40", fill = NA, size = 0.5) +
+  annotate("point", x = -98.879267, y = 18.801463, colour = "steelblue", size = 3) +
+  coord_sf(xlim = c(-99.7, -97.8), 
+           ylim = c(18.2, 19.7),
+           datum = NA) +
+  scale_fill_gradient(low = "white", high = "tomato", breaks = c(0, 6, 12.1), limits = c(0, 12.1),  labels = c("0% (min.)", "6%", "12.1% (máx.)")) +
+  labs(title = str_wrap(str_to_upper("porcentaje de participación municipal en el ejercicio participativo de la Termoeléctrica Huexca"), width = 60),
+       fill = "% de participación\n", 
+       caption = "\nSebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE") +
+  theme_void() +
+  theme(plot.title = element_text(size = 28, face = "bold", margin = margin(10,0,20,0), color = "grey20", family = "Trebuchet MS Bold"),
+        plot.caption = element_text(size = 20, face = "bold", color = "grey20", family = "Didact Gothic Regular", hjust = 0),
+        plot.background = element_rect(fill = "grey93"),
+        panel.grid = element_blank(), 
+        legend.position = c(0.85, 0.2),
+        legend.title = element_text(face = "bold", size = 20, family = "Trebuchet MS Bold"),
+        legend.text = element_text(face = "bold", size = 18, family = "Didact Gothic Regular")) +
+  ggsave(filename = "mapa_porcentaje_participacion_por_mpo.png", path = "03_graficas/", width = 11.73, height = 11.67, dpi = 200)
