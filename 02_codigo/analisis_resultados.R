@@ -22,6 +22,9 @@ edos_shp <- st_read("01_datos/shp/edos/edos_ine_2018.shp", stringsAsFactors = FA
 
 ### Preparar shapefiles para análisis ----
 
+# "Limpiar" nombres en shapefiles ----
+mpos_shp <- clean_names(mpos_shp)
+edos_shp  <- clean_names(edos_shp) 
 
 ### Importar datos ----
 
