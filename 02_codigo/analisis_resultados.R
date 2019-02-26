@@ -9,18 +9,18 @@ theme_set(theme_gray())
 
 ## Definir tema de gráficas ----
 tema <-  theme_minimal() +
-  theme(text = element_text(family="Didact Gothic Regular", color = "grey35"),
-        plot.title = element_text(size = 28, face = "bold", margin = margin(10,0,20,0), family="Trebuchet MS Bold", color = "grey25"),
-        plot.subtitle = element_text(size = 16, face = "bold", colour = "#666666", margin = margin(0, 0, 20, 0), family="Didact Gothic Regular"),
+  theme(text = element_text(family = "Didact Gothic Regular", color = "grey35"),
+        plot.title = element_text(size = 28, face = "bold", margin = margin(10,0,20,0), family = "Trebuchet MS Bold", color = "grey25"),
+        plot.subtitle = element_text(size = 16, face = "bold", colour = "#666666", margin = margin(0, 0, 20, 0), family = "Didact Gothic Regular"),
         plot.caption = element_text(hjust = 0, size = 15),
         panel.grid = element_line(linetype = 2), 
         panel.grid.minor = element_blank(),
         legend.position = "bottom",
-        legend.title = element_text(size = 16, face = "bold", family="Trebuchet MS Bold"),
-        legend.text = element_text(size = 14, family="Didact Gothic Regular"),
+        legend.title = element_text(size = 16, face = "bold", family = "Trebuchet MS Bold"),
+        legend.text = element_text(size = 14, family = "Didact Gothic Regular"),
         legend.title.align = 0.5,
-        axis.title = element_text(size = 18, hjust = 1, face = "bold", margin = margin(0,0,0,0), family="Didact Gothic Regular"),
-        axis.text = element_text(size = 16, face = "bold", family="Didact Gothic Regular"))
+        axis.title = element_text(size = 18, hjust = 1, face = "bold", margin = margin(0,0,0,0), family = "Didact Gothic Regular"),
+        axis.text = element_text(size = 16, face = "bold", family = "Didact Gothic Regular"))
 
 
 ### Importar shapefiles de municipios y estados ----
@@ -209,3 +209,25 @@ bd_mpo <-
   mutate(por_si = round((total_si/total_mpo)*100, 1),
          por_no = round((total_no/total_mpo)*100, 1),
          por_part = round((total_mpo/ln_mpo)*100, 1))
+
+### Gráfica: Número de muncipios en los que la participación ciudadana fue ____ ----
+bd_mpo %>% 
+  mutate(nivel_part = case_when(por_part < 2.5 ~ "Menor a 2.5%",
+                                por_part >= 2.5 & por_part < 5 ~ "Entre 2.5% y 5%",
+                                por_part >= 5 & por_part < 7.5 ~ "Entre 5% y 7.5%",
+                                por_part >= 7.5 & por_part < 10 ~ "Entre 7.5% y 10%",
+                                por_part >= 10 & por_part < 12.5 ~ "Entre 10% y 12.5%")) %>% 
+  count(nivel_part, sort = T)  %>% 
+  mutate(nivel_part = fct_relevel(nivel_part, "Menor a 2.5%", "Entre 2.5% y 5%", "Entre 5% y 7.5%", "Entre 7.5% y 10%", "Entre 10% y 12.5%")) %>% 
+  ggplot(aes(nivel_part, n)) +
+  geom_col(fill = "#a50300", alpha = 0.9) +
+  geom_text(aes(label = n), family = "Didact Gothic Regular", fontface = "bold", size = 8, vjust = 1.8, color = "white") +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = str_wrap(str_to_upper("número de muncipios en los que la participación ciudadana fue ____"), width = 70)) +
+  tema +
+  theme(panel.grid = element_blank(), 
+        axis.text.x = element_text(size = 24),
+        axis.text.y = element_blank(),
+        axis.title = element_blank()) +
+  ggsave(filename = "numero_mpos_por_rango_participacion.png", path = "03_graficas/", width = 15, height = 12, dpi = 200)
+
