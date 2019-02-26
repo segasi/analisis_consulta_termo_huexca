@@ -35,3 +35,68 @@ edos_shp <- st_read("01_datos/shp/edos/edos_ine_2018.shp", stringsAsFactors = FA
 resultados <-
   resultados %>% 
   mutate(dia_ejercicio = dmy(dia_ejercicio))
+
+# Generar variable con clave municipal de acuerdo con la clasificación del INE ----
+resultados <- 
+  resultados %>% 
+  mutate(cve_edo_mpo = case_when(estado == "MORELOS" & municipio == "AMACUZAC" ~ "17001",
+                                 estado == "MORELOS" & municipio == "ATLATLAHUCAN" ~ "17002",
+                                 estado == "MORELOS" & municipio == "AXOCHIAPAN" ~ "17003",
+                                 estado == "MORELOS" & municipio == "AYALA" ~ "17004",
+                                 estado == "MORELOS" & municipio == "COATETELCO" ~ "17015", # Creado en 2017. Formaba parte de Miacatlán, por lo que asumo que la Lista Nominal de este último mpo. incluye la de Coatetelco. Fuente: https://www.proceso.com.mx/515368/coatetelco-y-colonias-forman-un-nuevo-municipio-indigena-en-morelos
+                                 estado == "MORELOS" & municipio == "COATLAN DEL RIO" ~ "17005",
+                                 estado == "MORELOS" & municipio == "CUAUTLA" ~ "17006",
+                                 estado == "MORELOS" & municipio == "CUERNAVACA" ~ "17007",
+                                 estado == "MORELOS" & municipio == "EMILIANO ZAPATA" ~ "17008",
+                                 estado == "MORELOS" & municipio == "HUEYAPAN" ~ "17022", # Creado en 2017. Formaba parte de Tetela del Volcán, por lo que asumo que la Lista Nominal de este último mpo. incluye la de Hueyapan. Fuente: https://www.elsoldecuernavaca.com.mx/local/hueyapan-libre-de-las-leyes-escritas-2132788.html
+                                 estado == "MORELOS" & municipio == "HUITZILAC" ~ "17009",
+                                 estado == "MORELOS" & municipio == "JANTETELCO" ~ "17010",
+                                 estado == "MORELOS" & municipio == "JIUTEPEC" ~ "17011",
+                                 estado == "MORELOS" & municipio == "JOJUTLA" ~ "17012",
+                                 estado == "MORELOS" & municipio == "JONACATEPEC" ~ "17013",
+                                 estado == "MORELOS" & municipio == "MAZATEPEC" ~ "17014",
+                                 estado == "MORELOS" & municipio == "MIACATLAN" ~ "17015",
+                                 estado == "MORELOS" & municipio == "OCUITUCO" ~ "17016",
+                                 estado == "MORELOS" & municipio == "PUENTE DE IXTLA" ~ "17017",
+                                 estado == "MORELOS" & municipio == "TEMIXCO" ~ "17018",
+                                 estado == "MORELOS" & municipio == "TEMOAC" ~ "17033",
+                                 estado == "MORELOS" & municipio == "TEPALCINGO" ~ "17019",
+                                 estado == "MORELOS" & municipio == "TEPOZTLAN" ~ "17020",
+                                 estado == "MORELOS" & municipio == "TETECALA" ~ "17021",
+                                 estado == "MORELOS" & municipio == "TETELA DEL VOLCAN" ~ "17022",
+                                 estado == "MORELOS" & municipio == "TLALNEPANTLA" ~ "17023",
+                                 estado == "MORELOS" & municipio == "TLALTIZAPAN" ~ "17024",
+                                 estado == "MORELOS" & municipio == "TLAQUILTENANGO" ~ "17025",
+                                 estado == "MORELOS" & municipio == "TLAYACAPAN" ~ "17026",
+                                 estado == "MORELOS" & municipio == "TOTOLAPAN" ~ "17027",
+                                 estado == "MORELOS" & municipio == "XOCHITEPEC" ~ "17028",
+                                 estado == "MORELOS" & municipio == "XOXOCOTLA" ~ "17017", # Creado en 2017. Formaba parte de Puente de Ixtla, por lo que asumo que la Lista Nominal de este último mpo. incluye la de Xoxocotla. Fuente: https://www.proceso.com.mx/515605/morelos-decreta-creacion-del-municipio-de-xoxocotla
+                                 estado == "MORELOS" & municipio == "YAUTEPEC" ~ "17029",
+                                 estado == "MORELOS" & municipio == "YECAPIXTLA" ~ "17030",
+                                 estado == "MORELOS" & municipio == "ZACATEPEC" ~ "17031",
+                                 estado == "MORELOS" & municipio == "ZACUALPAN" ~ "17032",
+                                 estado == "PUEBLA" & municipio == "ACTEOPAN" ~ "21005",
+                                 estado == "PUEBLA" & municipio == "ATLIXCO" ~ "21019",
+                                 estado == "PUEBLA" & municipio == "ATZITZIHUACAN" ~ "21022",
+                                 estado == "PUEBLA" & municipio == "CALPAN" ~ "21026",
+                                 estado == "PUEBLA" & municipio == "COHUECAN" ~ "21034",
+                                 estado == "PUEBLA" & municipio == "HUAQUECHULA" ~ "21070",
+                                 estado == "PUEBLA" & municipio == "HUEJOTZINGO" ~ "21076",
+                                 estado == "PUEBLA" & municipio == "JUAN C. BONILLA" ~ "21092",
+                                 estado == "PUEBLA" & municipio == "NEALTICAN" ~ "21103",
+                                 estado == "PUEBLA" & municipio == "OCOYUCAN" ~ "21107",
+                                 estado == "PUEBLA" & municipio == "SAN JERONIMO TECUANIPAN" ~ "21127",
+                                 estado == "PUEBLA" & municipio == "SAN PEDRO CHOLULA" ~ "21141",
+                                 estado == "PUEBLA" & municipio == "SANTA ISABEL CHOLULA" ~ "21148",
+                                 estado == "PUEBLA" & municipio == "TLALTENANGO" ~ "21181",
+                                 estado == "PUEBLA" & municipio == "TOCHIMILCO" ~ "21188",
+                                 estado == "TLAXCALA" & municipio == "HUEYOTLIPAN" ~ "29014",
+                                 estado == "TLAXCALA" & 23municipio == "IXTACUIXTLA DE MARIANO MATAMOROS" ~ "29015",
+                                 estado == "TLAXCALA" & municipio == "NATIVITAS" ~ "29023",
+                                 estado == "TLAXCALA" & municipio == "PANOTLA" ~ "29024",
+                                 estado == "TLAXCALA" & municipio == "SAN DAMIAN TEXOLOC" ~ "29053",
+                                 estado == "TLAXCALA" & municipio == "SAN JUAN HUACTZINCO" ~ "29047",
+                                 estado == "TLAXCALA" & municipio == "SANTA APOLONIA TEACALCO" ~ "29045",
+                                 estado == "TLAXCALA" & municipio == "TETLATLAHUCA" ~ "29032",
+                                 estado == "TLAXCALA" & municipio == "TLAXCO" ~ "29034"))
+
