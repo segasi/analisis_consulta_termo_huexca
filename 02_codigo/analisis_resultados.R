@@ -130,7 +130,9 @@ bd <-
   resultados %>% 
   left_join(ln, by = "cve_edo_mpo") %>% 
   rename(entidad = entidad.x,           # Cambiar un par de nombrs
-         municipio = municipio.x) %>% 
+         municipio = municipio.x,
+         cve_edo = cve_edo.x,
+         cve_mpo = cve_mpo.x) %>% 
   select(idcasilla, entidad, estado, id_municipio, municipio, cve_edo, cve_mpo, cve_edo_mpo, casilla, everything())                  # Reordenar variables
 
 
