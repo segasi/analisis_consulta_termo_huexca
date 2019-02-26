@@ -20,6 +20,9 @@ edos_shp <- st_read("01_datos/shp/edos/edos_ine_2018.shp", stringsAsFactors = FA
   st_transform(., 4326) %>% 
   st_transform(., '+proj=longlat +datum=WGS84 +no_defs')
 
+### Preparar shapefiles para análisis ----
+
+
 ### Importar datos ----
 
 # Resultados de la consulta
