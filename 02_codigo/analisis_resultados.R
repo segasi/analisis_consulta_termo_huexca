@@ -27,3 +27,6 @@ mpos_shp <- st_read("01_datos/shp/mpos/mpos_ine_2018.shp", stringsAsFactors = FA
 edos_shp <- st_read("01_datos/shp/edos/edos_ine_2018.shp", stringsAsFactors = FALSE, quiet = TRUE)  %>% 
   st_transform(., 4326) %>% 
   st_transform(., '+proj=longlat +datum=WGS84 +no_defs')
+
+
+### Preparar bases de datos para análisis ----
