@@ -147,3 +147,19 @@ bd %>%
   print(n = Inf)
 
 # Nota: en 14 renglones los nombres de los municipios de la base de datos de resultados no coinciden con los de la base de datos del INE. Esto se debe a los siguientes motivos: (i) en la base de datos de resultados usan el nombre "TLALTIZAPAN" y en la del INE "TLALTIZAPAN DE ZAPATA"; (ii) en la base de datos de resultados usan el nombre "ZACUALPAN" y en la del INE "ZACUALPAN DE AMILPAS"; (iii) en la base de datos incluyen los municipios de Coatetelco, Xoxocotla y Hueyapan, y en la base de datos del INE estos municipios pertenecen a Miactlán, Puente de Ixtla y Tetela del Volcán, respectivamente
+
+
+### Calcular totales y porcentajes es por municipio ----
+bd_mpo <- 
+  bd %>% 
+  group_by(cve_edo_mpo) %>% 
+  summarise(estado = last(estado),
+            municipio = last(municipio),
+            total_si = sum(votos_si),
+            total_no = sum(votos_no),
+            total_mpo = sum(total),
+            ln_mpo = mean(lista_nominal)) %>% 
+  ungroup() %>% 
+  mutate(por_si = round((total_si/total_mpo)*100, 1),
+         por_no = round((total_no/total_mpo)*100, 1),
+         por_part = round((total_mpo/ln_mpo)*100, 1))
