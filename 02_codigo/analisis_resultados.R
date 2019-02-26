@@ -107,6 +107,10 @@ resultados <-
                                  estado == "TLAXCALA" & municipio == "TETLATLAHUCA" ~ "29032",
                                  estado == "TLAXCALA" & municipio == "TLAXCO" ~ "29034"))
 
+# "Limpiar" nombres de variables ----
+ln <- 
+  ln %>% 
+  clean_names()
 
 # Eliminar renglón con total nacional de ln y cambiar su tipo a numeric ----
 ln <- 
