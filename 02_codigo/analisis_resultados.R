@@ -100,3 +100,9 @@ resultados <-
                                  estado == "TLAXCALA" & municipio == "TETLATLAHUCA" ~ "29032",
                                  estado == "TLAXCALA" & municipio == "TLAXCO" ~ "29034"))
 
+
+# Eliminar renglón con total nacional de ln y cambiar su tipo a numeric ----
+ln <- 
+  ln %>% 
+  filter(entidad != "Total nacional") %>% 
+  mutate(entidad = as.numeric(entidad))
