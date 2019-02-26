@@ -213,12 +213,12 @@ bd_mpo <-
 ### Gráfica: Número de muncipios en los que la participación ciudadana fue ____ ----
 bd_mpo %>% 
   mutate(nivel_part = case_when(por_part < 2.5 ~ "Menor a 2.5%",
-                                por_part >= 2.5 & por_part < 5 ~ "Entre 2.5% y 5%",
-                                por_part >= 5 & por_part < 7.5 ~ "Entre 5% y 7.5%",
-                                por_part >= 7.5 & por_part < 10 ~ "Entre 7.5% y 10%",
+                                por_part >= 2.5 & por_part < 5 ~ "Entre 2.5% y 4.9%",
+                                por_part >= 5 & por_part < 7.5 ~ "Entre 5% y 7.4%",
+                                por_part >= 7.5 & por_part < 10 ~ "Entre 7.5% y 9.9%",
                                 por_part >= 10 & por_part < 12.5 ~ "Entre 10% y 12.5%")) %>% 
   count(nivel_part, sort = T)  %>% 
-  mutate(nivel_part = fct_relevel(nivel_part, "Menor a 2.5%", "Entre 2.5% y 5%", "Entre 5% y 7.5%", "Entre 7.5% y 10%", "Entre 10% y 12.5%")) %>% 
+  mutate(nivel_part = fct_relevel(nivel_part, "Menor a 2.5%", "Entre 2.5% y 4.9%", "Entre 5% y 7.4%", "Entre 7.5% y 9.9%", "Entre 10% y 12.5%")) %>% 
   ggplot(aes(nivel_part, n)) +
   geom_col(fill = "#a50300", alpha = 0.9) +
   geom_text(aes(label = n), family = "Didact Gothic Regular", fontface = "bold", size = 8, vjust = 1.8, color = "white") +
@@ -227,7 +227,8 @@ bd_mpo %>%
        caption = str_wrap("Nota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación, por lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes. Por ello, la gráfica solo reporta datos de 57 municipios.", width = 150)) +
   tema +
   theme(panel.grid = element_blank(), 
-        axis.text.x = element_text(size = 24),
+        plot.caption = element_text(margin = margin(20, 0, 0, 0)),
+        axis.text.x = element_text(size = 22),
         axis.text.y = element_blank(),
         axis.title = element_blank()) +
   ggsave(filename = "numero_mpos_por_rango_participacion.png", path = "03_graficas/", width = 14, height = 9, dpi = 200)
