@@ -106,3 +106,10 @@ ln <-
   ln %>% 
   filter(entidad != "Total nacional") %>% 
   mutate(entidad = as.numeric(entidad))
+
+# Generar columna con clave geográfica para municipios de acuerdo con la clasificación del INE ----
+ln <- 
+  ln %>% 
+  mutate(cve_edo = str_pad(entidad, 2, pad = "0"),
+         cve_mpo = str_pad(municipio, 3, pad = "0"),
+         cve_edo_mpo = paste(cve_edo, cve_mpo, sep = ""))
