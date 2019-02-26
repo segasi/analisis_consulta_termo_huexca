@@ -43,8 +43,6 @@ resultados <- read_csv("01_datos/resultado_mesas.csv")
 ln <- read_excel("01_datos/EM_30_Sep.xlsx", range = "A1:E2492")
 
 
-
-
 ### Preparar bases de datos para análisis ----
 
 # Transformar tipo de variable de dia_ejercicio ----
@@ -163,6 +161,24 @@ bd %>%
   print(n = Inf)
 
 # Nota: en 14 renglones los nombres de los municipios de la base de datos de resultados no coinciden con los de la base de datos del INE. Esto se debe a los siguientes motivos: (i) en la base de datos de resultados usan el nombre "TLALTIZAPAN" y en la del INE "TLALTIZAPAN DE ZAPATA"; (ii) en la base de datos de resultados usan el nombre "ZACUALPAN" y en la del INE "ZACUALPAN DE AMILPAS"; (iii) en la base de datos incluyen los municipios de Coatetelco, Xoxocotla y Hueyapan, y en la base de datos del INE estos municipios pertenecen a Miactlán, Puente de Ixtla y Tetela del Volcán, respectivamente
+
+
+### Unir bd con shapefile de mpos y generar nuevo objeto llamado bd_shp ----
+bd_shp <- 
+  bd %>% 
+  group_by(cve_edo_mpo) %>% 
+  summarise(estado = last(estado),
+            municipio = last(municipio),
+            total_si = sum(votos_si),
+            total_no = sum(votos_no),
+            total_mpo = sum(total),
+            ln_mpo = mean(lista_nominal)) %>% 
+  ungroup() %>% 
+  mutate(por_si = round((total_si/total_mpo)*100, 1),
+         por_no = round((total_no/total_mpo)*100, 1),
+         por_part = round((total_mpo/ln_mpo)*100, 1)) %>%
+  left_join(mpos_shp, by = "cve_edo_mpo") %>% 
+  st_as_sf() 
 
 
 ### Calcular totales y porcentajes es por municipio ----
