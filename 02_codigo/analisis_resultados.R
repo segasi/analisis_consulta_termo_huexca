@@ -136,3 +136,14 @@ bd <-
   select(idcasilla, entidad, estado, id_municipio, municipio, cve_edo, cve_mpo, cve_edo_mpo, casilla, everything())                  # Reordenar variables
 
 
+# Verificar que nombres de municipios sean iguales
+
+bd %>% 
+  select(municipio, nombre_del_municipio, cve_edo_mpo) %>% 
+  mutate(municipio = str_trim(municipio),
+         nombre_del_municipio = str_trim(nombre_del_municipio), 
+         iguales = ifelse(municipio == nombre_del_municipio, 1, 0)) %>% 
+  arrange(iguales) %>% 
+  print(n = Inf)
+
+# Nota: en 14 renglones los nombres de los municipios de la base de datos de resultados no coinciden con los de la base de datos del INE. Esto se debe a los siguientes motivos: (i) en la base de datos de resultados usan el nombre "TLALTIZAPAN" y en la del INE "TLALTIZAPAN DE ZAPATA"; (ii) en la base de datos de resultados usan el nombre "ZACUALPAN" y en la del INE "ZACUALPAN DE AMILPAS"; (iii) en la base de datos incluyen los municipios de Coatetelco, Xoxocotla y Hueyapan, y en la base de datos del INE estos municipios pertenecen a Miactlán, Puente de Ixtla y Tetela del Volcán, respectivamente
