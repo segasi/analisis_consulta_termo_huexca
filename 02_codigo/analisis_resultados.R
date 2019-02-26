@@ -91,7 +91,7 @@ resultados <-
                                  estado == "PUEBLA" & municipio == "TLALTENANGO" ~ "21181",
                                  estado == "PUEBLA" & municipio == "TOCHIMILCO" ~ "21188",
                                  estado == "TLAXCALA" & municipio == "HUEYOTLIPAN" ~ "29014",
-                                 estado == "TLAXCALA" & 23municipio == "IXTACUIXTLA DE MARIANO MATAMOROS" ~ "29015",
+                                 estado == "TLAXCALA" & municipio == "IXTACUIXTLA DE MARIANO MATAMOROS" ~ "29015",
                                  estado == "TLAXCALA" & municipio == "NATIVITAS" ~ "29023",
                                  estado == "TLAXCALA" & municipio == "PANOTLA" ~ "29024",
                                  estado == "TLAXCALA" & municipio == "SAN DAMIAN TEXOLOC" ~ "29053",
@@ -113,3 +113,12 @@ ln <-
   mutate(cve_edo = str_pad(entidad, 2, pad = "0"),
          cve_mpo = str_pad(municipio, 3, pad = "0"),
          cve_edo_mpo = paste(cve_edo, cve_mpo, sep = ""))
+
+### Unir resultados de la consulta con datos de la Lista Nominal ----
+bd <- 
+  resultados %>% 
+  left_join(ln, by = "cve_edo_mpo") %>% 
+  rename(entidad = entidad.x,           # Cambiar un par de nombrs
+         municipio = municipio.x) %>% 
+  select(idcasilla, entidad, estado, id_municipio, municipio, cve_edo, cve_mpo, cve_edo_mpo, casilla, everything())                  # Reordenar variables
+
