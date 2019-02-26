@@ -223,13 +223,13 @@ bd_mpo %>%
   geom_col(fill = "#a50300", alpha = 0.9) +
   geom_text(aes(label = n), family = "Didact Gothic Regular", fontface = "bold", size = 8, vjust = 1.8, color = "white") +
   scale_y_continuous(expand = c(0, 0)) +
-  labs(title = str_wrap(str_to_upper("número de muncipios en los que la participación ciudadana fue ____"), width = 70)) +
+  labs(title = str_wrap(str_to_upper("número de muncipios en los que la participación ciudadana fue ..."), width = 70)) +
   tema +
   theme(panel.grid = element_blank(), 
         axis.text.x = element_text(size = 24),
         axis.text.y = element_blank(),
         axis.title = element_blank()) +
-  ggsave(filename = "numero_mpos_por_rango_participacion.png", path = "03_graficas/", width = 15, height = 12, dpi = 200)
+  ggsave(filename = "numero_mpos_por_rango_participacion.png", path = "03_graficas/", width = 14, height = 9, dpi = 200)
 
 ### Gráfica: % de participación en los mpos. en los que se instaló al menos una casilla en la consulta de la Termoeléctrica Huexca
 bd_mpo %>% 
