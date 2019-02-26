@@ -30,3 +30,8 @@ edos_shp <- st_read("01_datos/shp/edos/edos_ine_2018.shp", stringsAsFactors = FA
 
 
 ### Preparar bases de datos para análisis ----
+
+# Transformar tipo de variable de dia_ejercicio ----
+resultados <-
+  resultados %>% 
+  mutate(dia_ejercicio = dmy(dia_ejercicio))
