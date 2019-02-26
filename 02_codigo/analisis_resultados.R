@@ -36,6 +36,13 @@ resultados <-
   resultados %>% 
   mutate(dia_ejercicio = dmy(dia_ejercicio))
 
+# Generar columna con clave geográfica para municipios de acuerdo con la clasificación del INE ----
+resultados <- 
+  resultados %>% 
+  mutate(cve_edo = str_pad(entidad, 2, pad = "0"),
+         cve_mpo = str_pad(municipio, 3, pad = "0"),
+         cve_edo_mpo = paste(cve_edo, cve_mpo, sep = ""))
+
 # Generar variable con clave municipal de acuerdo con la clasificación del INE ----
 resultados <- 
   resultados %>% 
@@ -121,4 +128,5 @@ bd <-
   rename(entidad = entidad.x,           # Cambiar un par de nombrs
          municipio = municipio.x) %>% 
   select(idcasilla, entidad, estado, id_municipio, municipio, cve_edo, cve_mpo, cve_edo_mpo, casilla, everything())                  # Reordenar variables
+
 
