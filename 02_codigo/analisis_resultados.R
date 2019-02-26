@@ -26,6 +26,14 @@ edos_shp <- st_read("01_datos/shp/edos/edos_ine_2018.shp", stringsAsFactors = FA
 mpos_shp <- clean_names(mpos_shp)
 edos_shp  <- clean_names(edos_shp) 
 
+# Generar clave municipal ----
+mpos_shp <- 
+  mpos_shp %>% 
+  mutate(cve_edo = str_pad(entidad, 2, pad = "0"),
+         cve_mpo = str_pad(municipio, 3, pad = "0"),
+         cve_edo_mpo = paste(cve_edo, cve_mpo, sep = ""))
+
+
 ### Importar datos ----
 
 # Resultados de la consulta
