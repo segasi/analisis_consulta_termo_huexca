@@ -223,7 +223,8 @@ bd_mpo %>%
   geom_col(fill = "#a50300", alpha = 0.9) +
   geom_text(aes(label = n), family = "Didact Gothic Regular", fontface = "bold", size = 8, vjust = 1.8, color = "white") +
   scale_y_continuous(expand = c(0, 0)) +
-  labs(title = str_wrap(str_to_upper("número de muncipios en los que la participación ciudadana fue ..."), width = 70)) +
+  labs(title = str_wrap(str_to_upper("número de muncipios en los que la participación ciudadana fue ..."), width = 70),
+       caption = str_wrap("Nota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación, por lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes. Por ello, la gráfica solo reporta datos de 57 municipios.", width = 150)) +
   tema +
   theme(panel.grid = element_blank(), 
         axis.text.x = element_text(size = 24),
