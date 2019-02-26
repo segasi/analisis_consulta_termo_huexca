@@ -231,3 +231,19 @@ bd_mpo %>%
         axis.title = element_blank()) +
   ggsave(filename = "numero_mpos_por_rango_participacion.png", path = "03_graficas/", width = 15, height = 12, dpi = 200)
 
+### Gráfica: % de participación en los mpos. en los que se instaló al menos una casilla en la consulta de la Termoeléctrica Huexca
+bd_mpo %>% 
+  mutate(acronimo_edo = case_when(estado == "MORELOS" ~ "Mor.",
+                                  estado == "PUEBLA" ~ "Pue.",
+                                  estado == "TLAXCALA" ~ "Tlax."),
+         etiqueta_mpo = paste(municipio, " (", acronimo_edo, ")", sep = "")) %>% 
+  ggplot(aes(fct_reorder(str_to_title(etiqueta_mpo), por_part), por_part)) +
+  geom_col(fill = "#a50300") +
+  coord_flip() +
+  labs(title = str_wrap(str_to_upper("porcentaje de participación en los municipios en los que se instaló al menos una casilla en el ejercicio participativo de la Termoeléctrica Huexca"), width = 50),
+       x = NULL,
+       y = "\n% de participación ") +
+  tema +
+  theme(axis.text = element_text(size = 14)) +
+  ggsave(filename = "por_participacion_por_mpo.png", path = "03_graficas/", width = 14, height = 17, dpi = 200)
+
