@@ -224,10 +224,10 @@ bd_mpo %>%
   geom_text(aes(label = n), family = "Didact Gothic Regular", fontface = "bold", size = 8, vjust = 1.8, color = "white") +
   scale_y_continuous(expand = c(0, 0)) +
   labs(title = str_wrap(str_to_upper("número de muncipios en los que la participación ciudadana fue ..."), width = 70),
-       caption = str_wrap("Nota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación, por lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes. Por ello, la gráfica solo reporta datos de 57 municipios.", width = 150)) +
+       caption = "\nSebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE\n\nNota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación, por lo que para el INE su Lista Nominal sigue siendo\nparte de la del municipio que integraban antes. Por ello, la gráfica solo reporta datos de 57 municipios.") +
   tema +
   theme(panel.grid = element_blank(), 
-        plot.caption = element_text(margin = margin(20, 0, 0, 0)),
+        plot.caption = element_text(margin = margin(10, 0, 0, 0)),
         axis.text.x = element_text(size = 22),
         axis.text.y = element_blank(),
         axis.title = element_blank()) +
@@ -244,7 +244,8 @@ bd_mpo %>%
   coord_flip() +
   labs(title = str_wrap(str_to_upper("porcentaje de participación en los municipios en los que se instaló al menos una casilla en el ejercicio participativo de la Termoeléctrica Huexca"), width = 50),
        x = NULL,
-       y = "\n% de participación ") +
+       y = "\n% de participación ",
+       caption = "\nSebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE") +
   tema +
   theme(axis.text = element_text(size = 14)) +
   ggsave(filename = "por_participacion_por_mpo.png", path = "03_graficas/", width = 14, height = 17, dpi = 200)
