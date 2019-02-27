@@ -241,9 +241,6 @@ bd_mpo %>%
          etiqueta_mpo = paste(municipio, " (", acronimo_edo, ")", sep = "")) %>% 
   ggplot(aes(fct_reorder(str_to_title(etiqueta_mpo), por_part), por_part)) +
   geom_col(fill = "#a50300") +
-  geom_hline(yintercept = c(47, 63.4), color = "salmon") +
-  annotate(geom = "text", label = "% de participación\nen las elecciones\nfederales de 2015", x = 3, y = 37, size = 5.5, family = "Didact Gothic Regular", color = "grey30") +
-  annotate(geom = "text", label = "% de participación\nen las elecciones\nfederales de 2018", x = 8, y = 55, size = 5.5, family = "Didact Gothic Regular", color = "grey30") +
   scale_y_continuous(limits = c(0, 66), breaks = seq(0, 65, 5)) +
   coord_flip() +
   labs(title = str_wrap(str_to_upper("porcentaje de participación en los municipios en los que se instaló al menos una casilla en el ejercicio participativo de la Termoeléctrica Huexca"), width = 55),
