@@ -241,7 +241,7 @@ bd_mpo %>%
          etiqueta_mpo = paste(municipio, " (", acronimo_edo, ")", sep = "")) %>% 
   ggplot(aes(fct_reorder(str_to_title(etiqueta_mpo), por_part), por_part)) +
   geom_col(fill = "#a50300") +
-  scale_y_continuous(limits = c(0, 66), breaks = seq(0, 65, 5)) +
+  scale_y_continuous(limits = c(0, 15), breaks = seq(0, 15, 2.5)) +
   coord_flip() +
   labs(title = str_wrap(str_to_upper("porcentaje de participación en los municipios en los que se instaló al menos una casilla en el ejercicio participativo de la Termoeléctrica Huexca"), width = 55),
        x = NULL,
