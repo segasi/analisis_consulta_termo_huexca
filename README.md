@@ -1,4 +1,4 @@
-# Análisis de la consulta sobre la termoeléctrica de Huexca
+# Análisis de los resultados del ejercicio participativo sobre la termoeléctrica de Huexca
 
 Este repo contiene los insumos y resultados del análisis que hice de la base de datos del "ejercicio participativo" sobre la termoeléctrica de Huexca y el Plan Integral Morelos. 
 
