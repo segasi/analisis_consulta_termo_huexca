@@ -203,11 +203,13 @@ bd_mpo <-
             municipio = last(municipio),
             total_si = sum(votos_si),
             total_no = sum(votos_no),
+            total_nulos = sum(votos_nulos),
             total_mpo = sum(total),
             ln_mpo = mean(lista_nominal)) %>% 
   ungroup() %>% 
   mutate(por_si = round((total_si/total_mpo)*100, 1),
          por_no = round((total_no/total_mpo)*100, 1),
+         por_nulos = round((total_nulos/total_mpo)*100, 1),
          por_part = round((total_mpo/ln_mpo)*100, 1))
 
 ### Generar archivos con bases de datos con resultados por casilla y municipio ----
