@@ -262,7 +262,10 @@ bd_mpo %>%
        caption = "\nSebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE") +
   tema +
   theme(plot.title = element_text(size = 24),
-        axis.text = element_text(size = 14)) +
+        plot.caption = element_text(size = 18),
+        axis.text = element_text(size = 14),
+        axis.text.x = element_text(size = 20),
+        axis.title.x = element_text(size = 20)) +
   ggsave(filename = "por_participacion_por_mpo.png", path = "03_graficas/", width = 14, height = 17, dpi = 200)
 
 
