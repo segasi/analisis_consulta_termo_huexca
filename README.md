@@ -9,9 +9,9 @@ Los datos de la Lista Nominal a nivel municipal los obtuve del Instituto Naciona
 ![My image](https://github.com/segasi/analisis_consulta_termo_huexca/blob/master/03_graficas/numero_mpos_por_rango_participacion.png)
 
 
-**Importante**: la base de datos con los resultados del ejercicio participativo incluye dos renglones para cada una de los **147 módulos de participación** (o casillas) instalados en los *60 municipios seleccionados por la Secretaría de Gobernación. Un renglón registra los resultados del sábado y el otro los del domingo.
+**Importante**: la base de datos con los resultados del ejercicio participativo incluye dos renglones para cada una de los **147 módulos de participación** (o casillas) instalados en los **60** municipios seleccionados por la Secretaría de Gobernación. Un renglón registra los resultados del sábado y el otro los del domingo.
 
-Tres de los 60 municipios -Coatetelco, Xoxocotla y Hueyapan- se crearon en 2017 (ver los detelles y fuentes hemerográficas en el código), por lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes (Miactlán, Puente de Ixtla y Tetela del Volcán, respectivamente).
+**Tres** de los **60** municipios -Coatetelco, Xoxocotla y Hueyapan- se crearon en 2017 (ver los detelles y fuentes hemerográficas en el código), por lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes (Miactlán, Puente de Ixtla y Tetela del Volcán, respectivamente).
 
 Dada la discrepancia recién descrita, con el fin de calcular la participación ciudadana por municipio decidí **sumar** los votos registrados en los módulos de participación de Coatetelco, Xoxocotla y Hueyapan a los de Miactlán, Puente de Ixtla y Tetela del Volcán, respectivamente.
 
