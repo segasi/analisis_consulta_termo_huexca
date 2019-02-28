@@ -282,9 +282,9 @@ bd_shp %>%
   annotate("text", label = "Guerrero", x = -99.5, y = 18.4, colour = "grey60", fontface = "bold", size = 10) +
   coord_sf(xlim = c(-99.7, -97.8), ylim = c(18.3, 19.7), datum = NA) +
   scale_fill_gradient(low = "white", high = "tomato", breaks = c(4, 46, 95.9), limits = c(0, 95.9), labels = c("4% (min)", "46", "96% (máx.)")) +
-  labs(title = str_wrap(str_to_upper("% de ciudadanos que votaron \"sí\" en el ejercicio participativo de la Termoeléctrica Huexca"), width = 60),
+  labs(title = str_to_upper(" % de ciudadanos que votaron \"sí\" en el ejercicio\n participativo de la Termoeléctrica Huexca, por mpo."),
        fill = "% que votó \"Sí\"\n",
-       caption = "\nSebastián Garrido de Sierra / @segasi / Fuente: Segob\n\nNota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación, por\nlo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes. Por ello, el\nmapa solo reporta datos de 57 municipios.") +
+       caption = "\n Sebastián Garrido de Sierra / @segasi / Fuente: Segob\n\n Nota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación, por\n lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes. Por ello, el\n mapa solo reporta datos de 57 municipios.") +
   theme_void() +
   theme(plot.title = element_text(size = 28, face = "bold", margin = margin(10,0,20,0), color = "grey20", family = "Trebuchet MS Bold"),
         plot.caption = element_text(size = 18, face = "bold", color = "grey20", family = "Didact Gothic Regular", hjust = 0),
@@ -312,15 +312,15 @@ bd_shp %>%
   annotate("text", label = "Guerrero", x = -99.5, y = 18.4, colour = "grey60", fontface = "bold", size = 10) +
   coord_sf(xlim = c(-99.7, -97.8), ylim = c(18.2, 19.7), datum = NA) +
   scale_fill_gradient(low = "white", high = "tomato", breaks = c(0, 6, 12.1), limits = c(0, 12.1),  labels = c("0% (min.)", "6%", "12.1% (máx.)")) +
-  labs(title = str_wrap(str_to_upper("% de participación municipal en el ejercicio participativo de la Termoeléctrica Huexca"), width = 50),
+  labs(title = str_to_upper(" % de participación en el ejercicio participativo de\n la Termoeléctrica Huexca, por municipio"),
        fill = "% de participación\n", 
-       caption = "\nSebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE\n\nNota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación,\npor lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes.\nPor ello, el mapa solo reporta datos de 57 municipios.") +
+       caption = "\n Sebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE\n\n Nota: tres de los 60 municipios considerados en el ejercicio de participación son de reciente creación,\n por lo que para el INE su Lista Nominal sigue siendo parte de la del municipio que integraban antes.\n Por ello, el mapa solo reporta datos de 57 municipios.") +
   theme_void() +
-  theme(plot.title = element_text(size = 28, face = "bold", margin = margin(10,0,20,0), color = "grey20", family = "Trebuchet MS Bold"),
+  theme(plot.title = element_text(size = 28, face = "bold", margin = margin(10,10,20,30), color = "grey20", family = "Trebuchet MS Bold"),
         plot.caption = element_text(size = 17, face = "bold", color = "grey20", family = "Didact Gothic Regular", hjust = 0),
         plot.background = element_rect(fill = "grey93"),
         panel.grid = element_blank(), 
         legend.position = c(0.85, 0.1),
         legend.title = element_text(face = "bold", size = 20, family = "Trebuchet MS Bold"),
         legend.text = element_text(face = "bold", size = 18, family = "Didact Gothic Regular")) +
-  ggsave(filename = "mapa_porcentaje_participacion_por_mpo.png", path = "03_graficas/", width = 10.85, height = 11.8, dpi = 200)
+  ggsave(filename = "mapa_porcentaje_participacion_por_mpo.png", path = "03_graficas/", width = 10.84, height = 11.8, dpi = 200)
