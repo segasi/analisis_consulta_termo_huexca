@@ -210,6 +210,17 @@ bd_mpo <-
          por_no = round((total_no/total_mpo)*100, 1),
          por_part = round((total_mpo/ln_mpo)*100, 1))
 
+### Generar archivos con bases de datos con resultados por casilla y municipio ----
+
+# Resultados por casilla
+bd %>% 
+  write_csv("04_datos_generados/bd_resultados_por_casilla.csv")
+
+# Resultados por municipio
+bd_mpo %>% 
+  write_csv("04_datos_generados/bd_resultados_por_mpo.csv")
+
+
 ### Gráfica: Número de muncipios en los que la participación ciudadana fue ____ ----
 bd_mpo %>% 
   mutate(nivel_part = case_when(por_part < 2.5 ~ "Menor a 2.5%",
