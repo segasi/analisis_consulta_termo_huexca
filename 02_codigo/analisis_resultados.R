@@ -246,7 +246,7 @@ bd_mpo %>%
         axis.title = element_blank()) +
   ggsave(filename = "numero_mpos_por_rango_participacion.png", path = "03_graficas/", width = 14, height = 9, dpi = 200)
 
-### Gráfica: % de participación en los mpos. en los que se instaló al menos una casilla en la consulta de la Termoeléctrica Huexca
+### Gráfica: % de participación en los mpos. en los que se instaló al menos una casilla en la consulta de la Termoeléctrica Huexca ----
 bd_mpo %>% 
   mutate(acronimo_edo = case_when(estado == "MORELOS" ~ "Mor.",
                                   estado == "PUEBLA" ~ "Pue.",
@@ -259,14 +259,14 @@ bd_mpo %>%
   labs(title = str_wrap(str_to_upper("porcentaje de participación en los municipios en los que se instaló al menos una casilla en el ejercicio participativo de la Termoeléctrica Huexca"), width = 55),
        x = NULL,
        y = "\n% de participación ",
-       caption = "\nSebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE") +
+       caption = "\nSebastián Garrido de Sierra / @segasi / Fuentes: Segob e INE\n\nNota: tres de los 60 municipios considerados en el ejercicio de participación son de\nreciente creación, por lo que para el INE su Lista Nominal sigue siendo parte de la del municipio\nque integraban antes. Por ello, la gráfica solo reporta datos de 57 municipios.") +
   tema +
   theme(plot.title = element_text(size = 24),
         plot.caption = element_text(size = 18),
         axis.text = element_text(size = 14),
         axis.text.x = element_text(size = 20),
         axis.title.x = element_text(size = 20)) +
-  ggsave(filename = "por_participacion_por_mpo.png", path = "03_graficas/", width = 14, height = 17, dpi = 200)
+  ggsave(filename = "por_participacion_por_mpo.png", path = "03_graficas/", width = 14, height = 19, dpi = 200)
 
 
 ### Mapa: Porcentaje de ciudadanos que votaron "sí" en el ejercicio participativo de la Termoeléctrica Huexca ----
